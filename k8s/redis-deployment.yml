@@ -1,0 +1,25 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: redis-deployment
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: redis
+
+  template:
+    #  pod
+    metadata:
+      labels:
+        component: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379

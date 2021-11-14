@@ -1,0 +1,25 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: client-deployment
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: web
+
+  template:
+    #  pod
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: client
+          image: dockenigma/multi-client
+          ports:
+            - containerPort: 3000
